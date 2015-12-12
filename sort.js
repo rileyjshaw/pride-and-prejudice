@@ -11,11 +11,12 @@ window.addEventListener('load', function (_) {
 
   var input = document.createElement('input');
   var output = document.createElement('pre');
+  input.type = 'file';
   output.style.backgroundColor = '#eee';
   output.style.whiteSpace = 'pre-wrap';
   output.style.wordWrap = 'break-word';
   output.style.fontFamily = FONT_FAMILY;
-  input.type = 'file';
+
   input.addEventListener('change', function (_ref) {
     var files = _ref.target.files;
 
@@ -84,7 +85,7 @@ window.addEventListener('load', function (_) {
   var fullWidth = canvas.width = maxWidth + 2 * horizontalPadding;
   var fullHeight = canvas.height = maxHeight + 2 * verticalPadding;
 
-  ctx.font = FONT_SIZE + ' "' + FONT_FAMILY + '"';
+  ctx.font = FONT_SIZE + ' ' + FONT_FAMILY;
   ctx.textBaseline = 'top';
 
   var getPixelWeight = (function (_) {
