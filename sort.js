@@ -2,8 +2,7 @@
 
 window.addEventListener('load', function (_) {
   var FONT_SIZE = '72px';
-  // GitHub uses Helvetica Neue at time of writing.
-  var FONT_FAMILY = 'Helvetica Neue';
+  var FONT_FAMILY = '"Courier New", Courier, monospace';
 
   /**
    * STAGE ONE: We render a simple file input to the page so the user can get
@@ -51,7 +50,7 @@ window.addEventListener('load', function (_) {
     return String.fromCharCode(i + 32);
   });
 
-  span.style.font = FONT_SIZE + ' "' + FONT_FAMILY + '"';
+  span.style.font = FONT_SIZE + ' ' + FONT_FAMILY;
   span.style.visibility = 'hidden';
   span.style.position = 'absolute';
   document.body.appendChild(span);

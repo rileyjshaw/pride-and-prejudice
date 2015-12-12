@@ -1,7 +1,6 @@
 window.addEventListener('load', _ => {
   const FONT_SIZE = '72px';
-  // GitHub uses Helvetica Neue at time of writing.
-  const FONT_FAMILY = 'Helvetica Neue';
+  const FONT_FAMILY = '"Courier New", Courier, monospace';
 
   /**
    * STAGE ONE: We render a simple file input to the page so the user can get
@@ -44,7 +43,7 @@ window.addEventListener('load', _ => {
   const chars =
     Array.from({length: 95}, (_, i) => String.fromCharCode(i + 32));
 
-  span.style.font = `${FONT_SIZE} "${FONT_FAMILY}"`;
+  span.style.font = `${FONT_SIZE} ${FONT_FAMILY}`;
   span.style.visibility = 'hidden';
   span.style.position = 'absolute';
   document.body.appendChild(span);
