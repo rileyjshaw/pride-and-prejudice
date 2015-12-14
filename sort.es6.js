@@ -82,7 +82,7 @@ window.addEventListener('load', _ => {
       // r, g, b channels will always be 0. Transparent pixels will have an
       // alpha channel of 0. So by summing `data`, we're summing the opacity of
       // all filled-in pixels. This is wildly inefficient but it gives us a
-      // dead simple, reliable measure of relative size.
+      // dead simple, <del>reliable</del> measure of relative size.
       return memo[char] = ctx.getImageData(0, 0, fullWidth, fullHeight).data
         .reduce((a, b) => a + b);
     }
