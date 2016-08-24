@@ -20,7 +20,7 @@ window.addEventListener('load', function (_) {
   input.addEventListener('change', function (_ref) {
     var files = _ref.target.files;
 
-    //Retrieve the first (and only!) File from the FileList object
+    // Retrieve the first (and only!) File from the FileList object.
     var file = files[0];
     var reader = new FileReader();
     reader.onload = function (_ref2) {
@@ -59,10 +59,10 @@ window.addEventListener('load', function (_) {
   var _chars$reduce = chars.reduce(function (max, char) {
     span.textContent = char;
 
-    var _span$getBoundingClientRect = span.getBoundingClientRect();
+    var _span$getBoundingClie = span.getBoundingClientRect();
 
-    var width = _span$getBoundingClientRect.width;
-    var height = _span$getBoundingClientRect.height;
+    var width = _span$getBoundingClie.width;
+    var height = _span$getBoundingClie.height;
 
     return { w: Math.max(max.w, width), h: Math.max(max.w, height) };
   }, { w: 0, h: 0 });
@@ -88,7 +88,7 @@ window.addEventListener('load', function (_) {
   ctx.font = FONT_SIZE + ' ' + FONT_FAMILY;
   ctx.textBaseline = 'top';
 
-  var getPixelWeight = (function (_) {
+  var getPixelWeight = function (_) {
     var memo = {};
 
     return function getPixelWeight(char) {
@@ -103,7 +103,7 @@ window.addEventListener('load', function (_) {
         return a + b;
       });
     };
-  })();
+  }();
 
   /**
    * STAGE FOUR: We tie it together with a simple function, `sortText()`,
@@ -116,7 +116,10 @@ window.addEventListener('load', function (_) {
       return char !== '\n';
     }).sort(function (a, b) {
       return getPixelWeight(a) - getPixelWeight(b);
-    }).join('').replace(/ /g, '&nbsp;');
+    })
+    // While we're here, we also add zero-width spaces between the characters
+    // so that they'll break evenly.
+    .join('​').replace(/ /g, '&nbsp;');
     ;
   }
 });

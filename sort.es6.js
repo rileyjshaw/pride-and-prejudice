@@ -16,7 +16,7 @@ window.addEventListener('load', _ => {
   output.style.fontFamily = FONT_FAMILY;
 
   input.addEventListener('change', ({target: {files}}) => {
-    //Retrieve the first (and only!) File from the FileList object
+    // Retrieve the first (and only!) File from the FileList object.
     const file = files[0];
     const reader = new FileReader();
     reader.onload = ({target: {result}}) => {
@@ -99,7 +99,9 @@ window.addEventListener('load', _ => {
       .split('')
       .filter(char => char !== '\n')
       .sort((a, b) => getPixelWeight(a) - getPixelWeight(b))
-      .join('')
+      // While we're here, we also add zero-width spaces between the characters
+      // so that they'll break evenly.
+      .join('\u200B')
       .replace(/ /g, '&nbsp;');
       ;
   }
