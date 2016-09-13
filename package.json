@@ -1,0 +1,33 @@
+{
+  "name": "pride-and-prejudice",
+  "version": "1.0.0",
+  "description": "Pride and Prejudice in its entirety, sorted by the visual weight of its characters.",
+  "main": "main.js",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-runtime": "^6.11.6",
+    "webpack": "^1.13.2"
+  },
+  "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js -p",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rileyjshaw/pride-and-prejudice.git"
+  },
+  "keywords": [
+    "gradient"
+  ],
+  "author": "rileyjshaw <i@rileyjshaw.com> (http://rileyjshaw.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rileyjshaw/pride-and-prejudice/issues"
+  },
+  "homepage": "https://github.com/rileyjshaw/pride-and-prejudice#readme"
+}

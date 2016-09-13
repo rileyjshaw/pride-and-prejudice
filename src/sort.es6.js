@@ -1,31 +1,21 @@
-window.addEventListener('load', _ => {
-  const FONT_SIZE = '72px';
-  const FONT_FAMILY = '"Courier New", Courier, monospace';
+/**
+ * STAGE ZERO: Config.
+ */
+const FONT_SIZE = '72px';
+const FONT_FAMILY = '"Courier New", Courier, monospace';
 
-  /**
-   * STAGE ONE: We render a simple file input to the page so the user can get
-   * started uploading their text. We also stage an output <pre>.
-   */
+/**
+ * STAGE ONE: We pull in our pre-computed character count data.
+ */
+const request = new XMLHttpRequest();
+request.onload = generateSortedCharacterList;
+request.open('get', 'deconstructed.json', true);
+request.send();
 
-  const input = document.createElement('input');
-  const output = document.createElement('pre');
-  input.type = 'file';
-  output.style.backgroundColor = '#eee';
-  output.style.whiteSpace = 'pre-wrap';
-  output.style.wordWrap = 'break-word';
-  output.style.fontFamily = FONT_FAMILY;
+const container = document.querySelector('.container');
 
-  input.addEventListener('change', ({target: {files}}) => {
-    // Retrieve the first (and only!) File from the FileList object.
-    const file = files[0];
-    const reader = new FileReader();
-    reader.onload = ({target: {result}}) => {
-      output.innerHTML = sortText(result);
-    };
-    reader.readAsText(file);
-  });
-  document.body.appendChild(input);
-  document.body.appendChild(output);
+function generateSortedCharacterList () {
+  const counts = JSON.parse(this.responseText);
 
   /**
    * STAGE TWO: We come up with an estimate for the maximum height and width
@@ -91,9 +81,8 @@ window.addEventListener('load', _ => {
   /**
    * STAGE FOUR: We tie it together with a simple function, `sortText()`,
    * with cache `weights`, that accepts a string and sorts it by visual
-   * weight. This is already linked to our <input> (see STAGE ONE).
+   * weight.
    */
-
   function sortText (text) {
     return text
       .split('')
@@ -102,7 +91,13 @@ window.addEventListener('load', _ => {
       // While we're here, we also add zero-width spaces between the characters
       // so that they'll break evenly.
       .join('\u200B')
-      .replace(/ /g, '&nbsp;');
+      .replace(/ /g, '\u00A0')
       ;
   }
-});
+
+  /**
+   * STAGE FIVE: Actually send the text in!
+   */
+  container.textContent = sortText(
+  Object.entries(counts).map(([char, count]) => char.repeat(count)).join(''));
+}
